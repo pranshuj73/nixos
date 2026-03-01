@@ -152,6 +152,7 @@
     playerctl
     feh
     killall
+    tree-sitter
 
     # terminal
     zsh
@@ -159,7 +160,7 @@
     zsh-autosuggestions
 
     # lang support
-    python
+    python3
     zig
     go
     nodejs
@@ -168,6 +169,8 @@
     gcc
     cargo
     rustc
+    lua
+    lua-language-server
   ];
 
   # Install firefox.
@@ -219,7 +222,6 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-  services.sxhkd.enable = true;
   services.picom = {
     enable = true;
     backend = "glx";

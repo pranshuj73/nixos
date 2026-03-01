@@ -1,5 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
+let
+  dotfiles = "/home/prnsh/dotfiles";
+  oos = config.lib.file.mkOutOfStoreSymlink;
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -7,6 +11,8 @@
   home.homeDirectory = "/home/prnsh";
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
+
+  nixpkgs.config.allowUnfree = true;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -25,9 +31,9 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".config/nvim" = { source = dotfiles/nvim; recursive = true; };
-    ".config/wezterm" = { source = dotfiles/wezterm; recursive = true; };
-    ".icons" = { source = dotfiles/cursors; recursive = true; };
+    ".config/nvim" = { source = oos "${dotfiles}/nvim"; recursive = true; };
+    ".config/wezterm" = { source = oos "${dotfiles}/wezterm"; recursive = true; };
+    ".icons" = { source = oos "${dotfiles}/cursors"; recursive = true; };
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -59,34 +65,6 @@
     EDITOR = "nvim";
     XCURSOR_THEME = "BreezeX-Light";
     XCURSOR_SIZE = "24";
-  };
-
-  home.pointerCursor = {
-    name = "Breeze";
-    package = pkgs.breeze-gtk;
-    size = 24;
-    gtk.enable = true;
-  };
-
-  programs.polybar = {
-    enable = true;
-    script = "${pkgs.polybar}/bin/polybar main";
-  };
-  xdg.configFile."polybar".source = ../../../polybar;
-
-
-  systemd.user.services.wallpaper = {
-    Unit = {
-      Description = "Set wallpaper";
-      After = [ "graphical-session.target" ];
-    };
-
-    Service = {
-      ExecStart = "${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/dreams.jpg}";
-      Type = "oneshot";
-    };
-
-    Install.WantedBy = [ "graphical-session.target" ];
   };
 
   # Let Home Manager install and manage itself.
