@@ -202,7 +202,9 @@
   };
 
   # env vars
-  environment.sessionVariables = {};
+  environment.sessionVariables = {
+    GTK_THEME = "Adwaita:dark";
+  };
 
   # fonts
   fonts.packages = with pkgs; [
