@@ -97,8 +97,14 @@ in
       df = "cd ~/dotfiles && nvim";
       nixos = "cd ~/nixos && nvim";
       renix0 = "sudo nixos-rebuild switch --flake /etc/nixos#zerogoki";
+      clnix0 = "sudo nix-collect-garbage --delete-older-than 3d";
       sl = "cd ~";
       gtree = "git ls-tree -r --name-only HEAD | tree --fromfile";
     };
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
   };
 }
