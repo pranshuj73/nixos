@@ -36,6 +36,22 @@ in
     wezterm
   ];
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    XCURSOR_THEME = "BreezeX-Light";
+    XCURSOR_SIZE = "24";
+  };
+
+  home.sessionPath = [
+    "$HOME/go/bin"
+  ];
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
+  #
+  # Program Specific Configuration
+  #
   programs.spicetify =
   let
     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
@@ -52,12 +68,37 @@ in
     enabledSnippets = with spicePkgs.snippets; [];
   };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    XCURSOR_THEME = "BreezeX-Light";
-    XCURSOR_SIZE = "24";
-  };
+  programs.zsh = {
+    enable = true;
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+    autosuggestion.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell";
+      plugins = [
+        "git"
+        "docker"
+      ];
+    };
+
+    initContent = ''
+      # Prevent zsh-autosuggestions from hooking any keys
+      ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
+
+      # Accept entire suggestion with Tab
+      bindkey '^I' autosuggest-accept
+      bindkey '^[[Z' autosuggest-accept
+
+      # Ctrl + Backspace
+      bindkey '^H' backward-kill-word
+    '';
+
+    shellAliases = {
+      df = "cd ~/dotfiles && nvim";
+      nixos = "cd ~/nixos && nvim";
+      renix0 = "sudo nixos-rebuild switch --flake /etc/nixos#zerogoki";
+      sl = "cd ~";
+      gtree = "git ls-tree -r --name-only HEAD | tree --fromfile";
+    };
+  };
 }

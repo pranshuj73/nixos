@@ -175,31 +175,7 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.zsh = {
-    enable = true;
-
-    autosuggestions.enable = true;
-    ohMyZsh = {
-      enable = true;
-      theme = "robbyrussell";
-      plugins = [
-        "git"
-        "docker"
-      ];
-    };
-
-    interactiveShellInit = ''
-      # Prevent zsh-autosuggestions from hooking any keys
-      ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
-
-      # Accept entire suggestion with Tab
-      bindkey '^I' autosuggest-accept
-      bindkey '^[[Z' autosuggest-accept
-
-      # Ctrl + Backspace
-      bindkey '^H' backward-kill-word
-    '';
-  };
+  programs.zsh.enable = true;
 
   # env vars
   environment.sessionVariables = {
