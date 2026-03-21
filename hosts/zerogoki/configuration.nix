@@ -79,7 +79,7 @@
     };
 
     mouse = {
-      naturalScrolling = true;
+      naturalScrolling = false;
     };
   };
   # Enable CUPS to print documents.
