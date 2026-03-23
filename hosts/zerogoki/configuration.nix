@@ -176,6 +176,8 @@
   # Install firefox.
   programs.firefox.enable = true;
   programs.zsh.enable = true;
+  programs.steam.enable = true;
+  programs.gamemode.enable = true;
 
   # env vars
   environment.sessionVariables = {
