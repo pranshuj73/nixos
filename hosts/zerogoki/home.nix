@@ -34,6 +34,7 @@ in
     code-cursor
     codex
     wezterm
+    readest
   ];
 
   home.sessionVariables = {
