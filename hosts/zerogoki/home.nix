@@ -3,6 +3,15 @@
 let
   dotfiles = "/home/prnsh/dotfiles";
   oos = config.lib.file.mkOutOfStoreSymlink;
+
+
+  android = pkgs.androidenv.composeAndroidPackages {
+    platformVersions = [ "36" ];
+    buildToolsVersions = [ "36.0.0" ];
+    platformToolsVersion = "36.0.2";
+    includeEmulator = false;
+    includeNDK = false;
+  };
 in
 {
   home.username = "prnsh";
@@ -35,12 +44,19 @@ in
     codex
     wezterm
     readest
+    android.androidsdk
+    pkgs.android-tools
   ];
+
+  nixpkgs.config.android_sdk.accept_license = true;
 
   home.sessionVariables = {
     EDITOR = "nvim";
     XCURSOR_THEME = "BreezeX-Light";
     XCURSOR_SIZE = "24";
+
+    ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
+    ANDROID_SDK_ROOT = "${android.androidsdk}/libexec/android-sdk";
   };
 
   home.sessionPath = [
