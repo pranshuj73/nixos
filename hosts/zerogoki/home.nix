@@ -39,13 +39,21 @@ in
     # applications
     discord
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    wezterm
+    readest
+
+    # programming utilities
     claude-code
     code-cursor
     codex
-    wezterm
-    readest
+
+    # android development
     android.androidsdk
-    pkgs.android-tools
+    android-tools
+    scrcpy
+
+    # utilities
+    maim
   ];
 
   nixpkgs.config.android_sdk.accept_license = true;

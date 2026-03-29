@@ -240,6 +240,14 @@
 
       blur-background = true;
       blur-background-frame = true;
+      blur-background-exclude = [
+        "window_type = 'dock'"
+        "window_type = 'desktop'"
+        "window_type = 'dropdown_menu'"
+        "window_type = 'popup_menu'"
+        "class_g = 'maim'"
+        "class_g = 'slop'"
+      ];
 
       # Optional: detect rounded corners correctly
       detect-rounded-corners = true;
@@ -263,18 +271,21 @@
           shadow = false;
           fade = false;
           blur-background = false;
+          opacity = 1.0;
         };
 
         tooltip = {
           shadow = false;
           fade = false;
           blur-background = false;
+          opacity = 1.0;
         };
 
         utility = {
           shadow = false;
           fade = false;
           blur-background = false;
+          opacity = 1.0;
         };
       };
     };
