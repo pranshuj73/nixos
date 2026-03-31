@@ -4,13 +4,12 @@ let
   dotfiles = "/home/prnsh/dotfiles";
   oos = config.lib.file.mkOutOfStoreSymlink;
 
-
   android = pkgs.androidenv.composeAndroidPackages {
     platformVersions = [ "36" ];
     buildToolsVersions = [ "36.0.0" ];
     platformToolsVersion = "36.0.2";
+    includeNDK = true;
     includeEmulator = false;
-    includeNDK = false;
   };
 in
 {
@@ -50,6 +49,7 @@ in
     # android development
     android.androidsdk
     android-tools
+    jdk17
     scrcpy
 
     # utilities
@@ -65,10 +65,14 @@ in
 
     ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
     ANDROID_SDK_ROOT = "${android.androidsdk}/libexec/android-sdk";
+    ANDROID_NDK_HOME = "${android.androidsdk}/libexec/android-sdk/ndk-bundle";
+    ANDROID_NDK_ROOT = "${android.androidsdk}/libexec/android-sdk/ndk-bundle";
+    JAVA_HOME = "${pkgs.jdk17}";
   };
 
   home.sessionPath = [
     "$HOME/go/bin"
+    "$HOME/.bun/bin"
   ];
 
   # Let Home Manager install and manage itself.
