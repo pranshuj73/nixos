@@ -38,6 +38,7 @@ in
   home.packages = with pkgs; [
     # applications
     discord
+    inputs.handy.packages.${pkgs.stdenv.hostPlatform.system}.handy
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     wezterm
     readest
