@@ -41,6 +41,8 @@ in
     inputs.handy.packages.${pkgs.stdenv.hostPlatform.system}.handy
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     wezterm
+    qbittorrent
+    zotero
     readest
 
     # programming utilities
@@ -56,7 +58,6 @@ in
 
     # utilities
     maim
-    qbittorrent
   ];
 
   nixpkgs.config.android_sdk.accept_license = true;
