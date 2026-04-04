@@ -56,6 +56,7 @@ in
 
     # utilities
     maim
+    qbittorrent
   ];
 
   nixpkgs.config.android_sdk.accept_license = true;
