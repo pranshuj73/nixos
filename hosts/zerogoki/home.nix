@@ -100,7 +100,7 @@ in
   };
 
 
-  services.handy.enable = true;
+  services.handy.enable = false;
 
   programs.zsh = {
     enable = true;
