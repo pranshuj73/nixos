@@ -134,18 +134,32 @@
     rofi
     clipmenu
     xclip
+    nix-ld
 
     # editors
-    neovim
+    # neovim
+    (
+      pkgs.buildFHSEnv {
+        name = "nvim";
+        targetPkgs = pkgs: with pkgs; [
+          neovim
+          # libs Mason binaries commonly need
+          stdenv.cc.cc
+          zlib
+          openssl
+          libgcc
+          glibc
+        ];
+        runScript = "nvim";
+      }
+    )
     vim
 
     # utilities
     wget
     unzip
     zoxide
-    gh
-    git
-    lazygit
+    gh git lazygit
     ripgrep
     mpv
     brightnessctl
@@ -153,6 +167,7 @@
     feh
     killall
     tree-sitter
+    fd
 
     # terminal
     zsh
@@ -160,17 +175,13 @@
     zsh-autosuggestions
 
     # lang support
-    python3
+    python3 uv
     zig
     go
-    nodejs
-    pnpm
-    bun
+    nodejs pnpm bun
     gcc
-    cargo
-    rustc
-    lua
-    lua-language-server
+    cargo rustc
+    lua lua-language-server
   ];
 
   # Install firefox.
