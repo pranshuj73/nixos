@@ -175,7 +175,7 @@
     zsh-autosuggestions
 
     # lang support
-    python3 uv
+    python3 uv ruff
     zig
     go
     nodejs pnpm bun
