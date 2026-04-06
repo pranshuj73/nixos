@@ -168,6 +168,7 @@
     killall
     tree-sitter
     fd
+    docker lazydocker
 
     # terminal
     zsh
