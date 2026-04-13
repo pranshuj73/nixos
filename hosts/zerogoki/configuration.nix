@@ -189,6 +189,8 @@
   programs.firefox.enable = true;
   programs.zsh.enable = true;
   programs.steam.enable = true;
+  programs.steam.remotePlay.openFirewall = true;
+  programs.steam.dedicatedServer.openFirewall = true;
   programs.gamemode.enable = true;
 
   # env vars
