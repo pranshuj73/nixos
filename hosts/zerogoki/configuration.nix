@@ -82,6 +82,9 @@
       naturalScrolling = false;
     };
   };
+  # multi-touch gesture recognizer
+  services.touchegg.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -108,7 +111,7 @@
   users.users.prnsh = {
     isNormalUser = true;
     description = "prnsh";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -168,7 +171,7 @@
     killall
     tree-sitter
     fd
-    docker lazydocker
+    lazydocker
 
     # terminal
     zsh
@@ -185,9 +188,16 @@
     lua lua-language-server
   ];
 
+  # docker setup
+  virtualisation.docker = {
+    enable = true;
+  };
+
   # Install firefox.
   programs.firefox.enable = true;
   programs.zsh.enable = true;
+
+  # steam setup
   programs.steam.enable = true;
   programs.steam.remotePlay.openFirewall = true;
   programs.steam.dedicatedServer.openFirewall = true;
