@@ -40,6 +40,7 @@ in
     discord
     inputs.handy.packages.${pkgs.stdenv.hostPlatform.system}.handy
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.helium.packages.${system}.default
     wezterm
     qbittorrent
     zotero
