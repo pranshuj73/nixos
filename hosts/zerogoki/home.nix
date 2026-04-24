@@ -137,6 +137,8 @@ in
       clnix0 = "sudo nix-collect-garbage --delete-older-than 3d";
       sl = "cd ~";
       gtree = "git ls-tree -r --name-only HEAD | tree --fromfile";
+      lg = "lazygit";
+      ld = "lazydocker";
     };
   };
 
