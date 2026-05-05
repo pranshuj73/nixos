@@ -135,8 +135,10 @@
     polybar
     picom
     rofi
-    clipmenu
+    rofimoji
+    copyq
     xclip
+    gparted
 
     # editors
     # neovim
